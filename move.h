@@ -18,6 +18,8 @@ void right(Material* material, SDL_Surface*** map, SDL_Rect* position,
 
 bool isBox(Material* material, SDL_Surface*** map, int y, int x);
 
+bool isBoxOk(Material* material, SDL_Surface*** map, int y, int x);
+
 bool isMoveOk(Material* material, SDL_Surface*** map, int y, int x);
 
 bool isTarget(Material* material, SDL_Surface*** map, int y, int x);

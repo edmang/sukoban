@@ -9,7 +9,11 @@
 #include "material.h"
 
 bool isBox(Material* material, SDL_Surface*** map, int y, int x) {
-    return (map[y][x] == material->box) || (map[y][x] == material->boxOk);
+    return map[y][x] == material->box;
+}
+
+bool isBoxOk(Material* material, SDL_Surface*** map, int y, int x) {
+    return map[y][x] == material->boxOk;
 }
 
 bool isTarget(Material* material, SDL_Surface*** map, int y, int x) {
