@@ -31,9 +31,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
     Coord nextNextCoord = getNextCoordFromCoord(direction, nextCoord);
 
     if (direction == UP) {
-        up(material, map, marioPtr->curPos, nextCoord);
-        marioPtr->curMario = marioPtr->marioUp;
-
+        up(material, map, marioPtr, nextCoord);
         if (isBox(material, map, nextCoord.y, nextCoord.x)) {
             if (isMoveOk(material, map, nextNextCoord.y, nextNextCoord.x)) {
                 if (isTarget(material, map, nextNextCoord.y, nextNextCoord.x)) {
@@ -42,8 +40,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->empty;
-                up(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioUp;
+                up(material, map, marioPtr, nextCoord);
             }
         }
 
@@ -55,15 +52,12 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->target;
-                up(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioUp;
+                up(material, map, marioPtr, nextCoord);
             }
         }
 
     } else if (direction == DOWN) {
-        down(material, map, marioPtr->curPos, nextCoord);
-        marioPtr->curMario = marioPtr->marioDown;
-
+        down(material, map, marioPtr, nextCoord);
         if (isBox(material, map, nextCoord.y, nextCoord.x)) {
             if (isMoveOk(material, map, nextNextCoord.y, nextNextCoord.x)) {
                 if (isTarget(material, map, nextNextCoord.y, nextNextCoord.x)) {
@@ -72,8 +66,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->empty;
-                down(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioDown;
+                down(material, map, marioPtr, nextCoord);
             }
         }
 
@@ -85,15 +78,12 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->target;
-                down(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioDown;
+                down(material, map, marioPtr, nextCoord);
             }
         }
 
     } else if (direction == LEFT) {
-        left(material, map, marioPtr->curPos, nextCoord);
-        marioPtr->curMario = marioPtr->marioLeft;
-
+        left(material, map, marioPtr, nextCoord);
         if (isBox(material, map, nextCoord.y, nextCoord.x)) {
             if (isMoveOk(material, map, nextNextCoord.y, nextNextCoord.x)) {
                 if (isTarget(material, map, nextNextCoord.y, nextNextCoord.x)) {
@@ -102,8 +92,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->empty;
-                left(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioLeft;
+                left(material, map, marioPtr, nextCoord);
             }
         }
 
@@ -115,15 +104,12 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->target;
-                left(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioLeft;
+                left(material, map, marioPtr, nextCoord);
             }
         }
 
     } else if (direction == RIGHT) {
-        right(material, map, marioPtr->curPos, nextCoord);
-        marioPtr->curMario = marioPtr->marioRight;
-
+        right(material, map, marioPtr, nextCoord);
         if (isBox(material, map, nextCoord.y, nextCoord.x)) {
             if (isMoveOk(material, map, nextNextCoord.y, nextNextCoord.x)) {
                 if (isTarget(material, map, nextNextCoord.y, nextNextCoord.x)) {
@@ -132,8 +118,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->empty;
-                right(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioRight;
+                right(material, map, marioPtr, nextCoord);
             }
         }
 
@@ -145,8 +130,7 @@ void move(Material* material, SDL_Surface*** map, Direction direction,
                     map[nextNextCoord.y][nextNextCoord.x] = material->box;
                 }
                 map[nextCoord.y][nextCoord.x] = material->target;
-                right(material, map, marioPtr->curPos, nextCoord);
-                marioPtr->curMario = marioPtr->marioRight;
+                right(material, map, marioPtr, nextCoord);
             }
         }
     }

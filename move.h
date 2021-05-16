@@ -7,13 +7,12 @@
 #include "coord.h"
 #include "material.h"
 
-void up(Material* material, SDL_Surface*** map, SDL_Rect* position,
-        Coord nextCoord);
-void down(Material* material, SDL_Surface*** map, SDL_Rect* position,
+void up(Material* material, SDL_Surface*** map, Mario* mario, Coord nextCoord);
+void down(Material* material, SDL_Surface*** map, Mario* mario,
           Coord nextCoord);
-void left(Material* material, SDL_Surface*** map, SDL_Rect* position,
+void left(Material* material, SDL_Surface*** map, Mario* mario,
           Coord nextCoord);
-void right(Material* material, SDL_Surface*** map, SDL_Rect* position,
+void right(Material* material, SDL_Surface*** map, Mario* mario,
            Coord nextCoord);
 
 bool isBox(Material* material, SDL_Surface*** map, int y, int x);

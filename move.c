@@ -25,53 +25,53 @@ bool isMoveOk(Material* material, SDL_Surface*** map, int y, int x) {
              (map[y][x] == material->boxOk));
 }
 
-void up(Material* material, SDL_Surface*** map, SDL_Rect* position,
-        Coord coord) {
-    if (position->y > 0) {
+void up(Material* material, SDL_Surface*** map, Mario* mario, Coord coord) {
+    if (mario->curPos->y > 0) {
         int y = coord.y;
         int x = coord.x;
         if (y >= 0 && y <= SIZE) {
             if (isMoveOk(material, map, y, x)) {
-                position->y -= WINDOW_SCALE;
+                mario->curPos->y -= WINDOW_SCALE;
+                mario->curMario = mario->marioUp;
             }
         }
     }
 }
 
-void down(Material* material, SDL_Surface*** map, SDL_Rect* position,
-          Coord coord) {
-    if (position->y < (WINDOW_SIZE - WINDOW_SCALE)) {
+void down(Material* material, SDL_Surface*** map, Mario* mario, Coord coord) {
+    if (mario->curPos->y < (WINDOW_SIZE - WINDOW_SCALE)) {
         int y = coord.y;
         int x = coord.x;
         if (y >= 0 && y <= SIZE) {
             if (isMoveOk(material, map, y, x)) {
-                position->y += WINDOW_SCALE;
+                mario->curPos->y += WINDOW_SCALE;
+                mario->curMario = mario->marioDown;
             }
         }
     }
 }
 
-void left(Material* material, SDL_Surface*** map, SDL_Rect* position,
-          Coord coord) {
-    if (position->x > 0) {
+void left(Material* material, SDL_Surface*** map, Mario* mario, Coord coord) {
+    if (mario->curPos->x > 0) {
         int y = coord.y;
         int x = coord.x;
         if (x >= 0 && x <= SIZE) {
             if (isMoveOk(material, map, y, x)) {
-                position->x -= WINDOW_SCALE;
+                mario->curPos->x -= WINDOW_SCALE;
+                mario->curMario = mario->marioLeft;
             }
         }
     }
 }
 
-void right(Material* material, SDL_Surface*** map, SDL_Rect* position,
-           Coord coord) {
-    if (position->x < (WINDOW_SIZE - WINDOW_SCALE)) {
+void right(Material* material, SDL_Surface*** map, Mario* mario, Coord coord) {
+    if (mario->curPos->x < (WINDOW_SIZE - WINDOW_SCALE)) {
         int y = coord.y;
         int x = coord.x;
         if (x >= 0 && x <= SIZE) {
             if (isMoveOk(material, map, y, x)) {
-                position->x += WINDOW_SCALE;
+                mario->curPos->x += WINDOW_SCALE;
+                mario->curMario = mario->marioRight;
             }
         }
     }
