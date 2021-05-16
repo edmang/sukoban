@@ -8,16 +8,17 @@
 #include "coord.h"
 #include "material.h"
 
-bool isNextBox(Material* material, SDL_Surface*** map, int nextY, int nextX) {
-    return (map[nextY][nextX] == material->box) ||
-           (map[nextY][nextX] == material->boxOk);
+bool isBox(Material* material, SDL_Surface*** map, int y, int x) {
+    return (map[y][x] == material->box) || (map[y][x] == material->boxOk);
 }
 
-bool isNextMoveOk(Material* material, SDL_Surface*** map, int nextY,
-                  int nextX) {
-    return !((map[nextY][nextX] == material->wall) ||
-             (map[nextY][nextX] == material->box) ||
-             (map[nextY][nextX] == material->boxOk));
+bool isTarget(Material* material, SDL_Surface*** map, int y, int x) {
+    return map[y][x] == material->target;
+}
+
+bool isMoveOk(Material* material, SDL_Surface*** map, int y, int x) {
+    return !((map[y][x] == material->wall) || (map[y][x] == material->box) ||
+             (map[y][x] == material->boxOk));
 }
 
 void up(Material* material, SDL_Surface*** map, SDL_Rect* position,
@@ -26,7 +27,7 @@ void up(Material* material, SDL_Surface*** map, SDL_Rect* position,
         int y = coord.y;
         int x = coord.x;
         if (y >= 0 && y <= SIZE) {
-            if (isNextMoveOk(material, map, y, x)) {
+            if (isMoveOk(material, map, y, x)) {
                 position->y -= WINDOW_SCALE;
             }
         }
@@ -39,7 +40,7 @@ void down(Material* material, SDL_Surface*** map, SDL_Rect* position,
         int y = coord.y;
         int x = coord.x;
         if (y >= 0 && y <= SIZE) {
-            if (isNextMoveOk(material, map, y, x)) {
+            if (isMoveOk(material, map, y, x)) {
                 position->y += WINDOW_SCALE;
             }
         }
@@ -52,7 +53,7 @@ void left(Material* material, SDL_Surface*** map, SDL_Rect* position,
         int y = coord.y;
         int x = coord.x;
         if (x >= 0 && x <= SIZE) {
-            if (isNextMoveOk(material, map, y, x)) {
+            if (isMoveOk(material, map, y, x)) {
                 position->x -= WINDOW_SCALE;
             }
         }
@@ -65,7 +66,7 @@ void right(Material* material, SDL_Surface*** map, SDL_Rect* position,
         int y = coord.y;
         int x = coord.x;
         if (x >= 0 && x <= SIZE) {
-            if (isNextMoveOk(material, map, y, x)) {
+            if (isMoveOk(material, map, y, x)) {
                 position->x += WINDOW_SCALE;
             }
         }

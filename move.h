@@ -16,8 +16,10 @@ void left(Material* material, SDL_Surface*** map, SDL_Rect* position,
 void right(Material* material, SDL_Surface*** map, SDL_Rect* position,
            Coord nextCoord);
 
-bool isNextBox(Material* material, SDL_Surface*** map, int nextY, int nextX);
+bool isBox(Material* material, SDL_Surface*** map, int y, int x);
 
-bool isNextMoveOk(Material* material, SDL_Surface*** map, int nextY, int nextX);
+bool isMoveOk(Material* material, SDL_Surface*** map, int y, int x);
+
+bool isTarget(Material* material, SDL_Surface*** map, int y, int x);
 
 #endif

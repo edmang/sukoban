@@ -59,19 +59,16 @@ SDL_Surface*** convertLevelToMap(Material material, char** level, int size) {
 void freeMaterial(Material* materialPtr) {
     free(materialPtr->box);
     free(materialPtr->boxOk);
-    free(materialPtr->empty);
     free(materialPtr->target);
     free(materialPtr->wall);
 }
 
-Material initMaterial(char* wall, char* box, char* boxOk, char* target,
-                      char* empty) {
+Material initMaterial(char* wall, char* box, char* boxOk, char* target) {
     Material material;
     material.wall = IMG_Load(wall);
     material.box = IMG_Load(box);
     material.boxOk = IMG_Load(boxOk);
     material.target = IMG_Load(target);
-    material.empty = IMG_Load(empty);
     return material;
 }
 

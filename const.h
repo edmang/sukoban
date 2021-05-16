@@ -16,7 +16,6 @@
 #define BOX IMG_FOLDER "/caisse.jpg"
 #define BOX_OK IMG_FOLDER "/caisse_ok.jpg"
 #define TARGET IMG_FOLDER "/objectif.png"
-#define EMPTY IMG_FOLDER "/empty.jpg"
 
 #define WINDOW_SCALE 34
 #define SIZE (WINDOW_SIZE / WINDOW_SCALE)

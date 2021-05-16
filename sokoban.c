@@ -26,12 +26,12 @@ int main(int argn, char** argv) {
     SDL_Flip(background);
 
     // Load game context
-    Material material = initMaterial(WALL, BOX, BOX_OK, TARGET, EMPTY);
+    Material material = initMaterial(WALL, BOX, BOX_OK, TARGET);
     char** level = loadLevel("level");
-    SDL_Surface*** map = convertLevelToMap(material, level, SIZE);
+    SDL_Surface*** MAP = convertLevelToMap(material, level, SIZE);
 
     // Engine
-    play(&material, background, &mario, map);
+    play(&material, background, &mario, MAP);
 
     // End
     SDL_FreeSurface(welcomePage);

@@ -12,13 +12,14 @@ typedef struct Material {
     SDL_Surface* empty;
 } Material;
 
-Material initMaterial(char* wall, char* box, char* boxOk, char* target,
-                      char* empty);
+Material initMaterial(char* wall, char* box, char* boxOk, char* target);
 
 SDL_Surface*** convertLevelToMap(Material material, char** level, int size);
 
 void freeMaterial(Material* materialPtr);
 
 char** loadLevel(char* filePath);
+
+extern SDL_Surface*** MAP;
 
 #endif
