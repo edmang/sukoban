@@ -7,6 +7,9 @@
 #include "coord.h"
 #include "material.h"
 
+void move(Material* material, SDL_Surface*** map, Direction direction,
+          Mario* mario);
+
 void up(Material* material, SDL_Surface*** map, Mario* mario, Coord nextCoord);
 void down(Material* material, SDL_Surface*** map, Mario* mario,
           Coord nextCoord);
