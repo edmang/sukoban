@@ -69,6 +69,7 @@ Material initMaterial(char* wall, char* box, char* boxOk, char* target) {
     material.box = IMG_Load(box);
     material.boxOk = IMG_Load(boxOk);
     material.target = IMG_Load(target);
+    material.empty = NULL;
     return material;
 }
 
