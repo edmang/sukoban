@@ -9,6 +9,10 @@ typedef struct Mario {
     SDL_Surface* marioLeft;
     SDL_Surface* marioRight;
     SDL_Surface* marioDown;
+
+    SDL_Surface* curMario;
+
+    SDL_Rect* curPos;
 } Mario;
 
 Mario initMario(char* up, char* down, char* left, char* right);

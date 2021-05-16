@@ -2,7 +2,6 @@
 #include <SDL/SDL_image.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include "const.h"
 #include "control.h"
@@ -28,12 +27,13 @@ int main(int argn, char** argv) {
     // Load game context
     Material material = initMaterial(WALL, BOX, BOX_OK, TARGET);
     char** level = loadLevel("level");
-    SDL_Surface*** MAP = convertLevelToMap(material, level, SIZE);
+    SDL_Surface*** map = convertLevelToMap(material, level, SIZE);
 
     // Engine
-    play(&material, background, &mario, MAP);
+    play(&material, background, &mario, map);
 
     // End
+    freeMario(&mario);
     SDL_FreeSurface(welcomePage);
     freeMaterial(&material);
     SDL_Quit();

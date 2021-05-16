@@ -19,7 +19,4 @@ SDL_Surface*** convertLevelToMap(Material material, char** level, int size);
 void freeMaterial(Material* materialPtr);
 
 char** loadLevel(char* filePath);
-
-extern SDL_Surface*** MAP;
-
 #endif
