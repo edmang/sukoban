@@ -6,7 +6,7 @@
 
 #include "const.h"
 #include "control.h"
-#include "gameContext.h"
+#include "material.h"
 #include "mario.h"
 #include "view.h"
 
@@ -15,7 +15,7 @@ int main(int argn, char** argv) {
     SDL_Init(SDL_INIT_VIDEO);
 
     SDL_Surface* background =
-        SDL_SetVideoMode(WIDTH, HEIGHT, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
+        SDL_SetVideoMode(WINDOW_SIZE, WINDOW_SIZE, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
 
     configure(background);
     Mario mario = initMario(MARIO_UP, MARIO_DOWN, MARIO_LEFT, MARIO_RIGHT);
@@ -28,10 +28,10 @@ int main(int argn, char** argv) {
     // Load game context
     Material material = initMaterial(WALL, BOX, BOX_OK, TARGET, EMPTY);
     char** level = loadLevel("level");
-    SDL_Surface*** map = convertLevelToMap(material, level, ROW_SIZE, COL_SIZE);
+    SDL_Surface*** map = convertLevelToMap(material, level, SIZE);
 
     // Engine
-    play(background, &mario, map);
+    play(&material, background, &mario, map);
 
     // End
     SDL_FreeSurface(welcomePage);

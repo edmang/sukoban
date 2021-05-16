@@ -15,8 +15,7 @@ typedef struct Material {
 Material initMaterial(char* wall, char* box, char* boxOk, char* target,
                       char* empty);
 
-SDL_Surface*** convertLevelToMap(Material material, char** level, int maxRow,
-                                 int maxCol);
+SDL_Surface*** convertLevelToMap(Material material, char** level, int size);
 
 void freeMaterial(Material* materialPtr);
 

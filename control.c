@@ -4,18 +4,56 @@
 #include <SDL/SDL.h>
 
 #include "const.h"
-#include "gameContext.h"
+#include "material.h"
+#include "move.h"
 
-void move(Direction direction, SDL_Surface** curMarioDir, Mario* marioPtr,
-          SDL_Rect* curPos);
+void startLevel(SDL_Surface* background, SDL_Surface*** map, int size) {
+    SDL_Rect curPos = {0, 0};
+    for (int i = 0; i < size; i++) {
+        curPos.x = 0;
+        for (int j = 0; j < size; j++) {
+            SDL_BlitSurface(map[i][j], NULL, background, &curPos);
+            curPos.x += WINDOW_SCALE;
+        }
+        curPos.y += WINDOW_SCALE;
+    }
+}
+
+void applyWindowScale(SDL_Rect* position) {
+    position->x = position->x * WINDOW_SCALE;
+    position->y = position->y * WINDOW_SCALE;
+}
 
 void initGame(SDL_Surface* background, SDL_Rect* curPos, Mario* marioPtr,
-              SDL_Surface** curMarioDir);
+              SDL_Surface** curMarioDir) {
+    curPos->x = 4;
+    curPos->y = 4;
+    applyWindowScale(curPos);
+    *curMarioDir = marioPtr->marioDown;
+}
 
-void startLevel(SDL_Surface* background, SDL_Surface*** map, int maxRow,
-                int maxCol);
+void move(Material* material, SDL_Surface*** map, Direction direction,
+          SDL_Surface** curMarioDir, Mario* marioPtr, SDL_Rect* curPos) {
+    if (direction == UP) {
+        up(material, map, curPos);
+        *curMarioDir = marioPtr->marioUp;
 
-void play(SDL_Surface* background, Mario* marioPtr, SDL_Surface*** map) {
+    } else if (direction == DOWN) {
+        down(material, map, curPos);
+        *curMarioDir = marioPtr->marioDown;
+
+    } else if (direction == LEFT) {
+        left(material, map, curPos);
+        *curMarioDir = marioPtr->marioLeft;
+
+    } else if (direction == RIGHT) {
+        right(material, map, curPos);
+        *curMarioDir = marioPtr->marioRight;
+    }
+}
+
+void play(Material* material, SDL_Surface* background, Mario* marioPtr,
+          SDL_Surface*** map) {
     bool keep = true;
     bool isGameStart = false;
     SDL_Event event;
@@ -37,19 +75,23 @@ void play(SDL_Surface* background, Mario* marioPtr, SDL_Surface*** map) {
                         break;
 
                     case SDLK_UP:
-                        move(UP, &curMarioDir, marioPtr, &curPos);
+                        move(material, map, UP, &curMarioDir, marioPtr,
+                             &curPos);
                         break;
 
                     case SDLK_DOWN:
-                        move(DOWN, &curMarioDir, marioPtr, &curPos);
+                        move(material, map, DOWN, &curMarioDir, marioPtr,
+                             &curPos);
                         break;
 
                     case SDLK_LEFT:
-                        move(LEFT, &curMarioDir, marioPtr, &curPos);
+                        move(material, map, LEFT, &curMarioDir, marioPtr,
+                             &curPos);
                         break;
 
                     case SDLK_RIGHT:
-                        move(RIGHT, &curMarioDir, marioPtr, &curPos);
+                        move(material, map, RIGHT, &curMarioDir, marioPtr,
+                             &curPos);
                         break;
 
                     case SDLK_ESCAPE:
@@ -62,60 +104,11 @@ void play(SDL_Surface* background, Mario* marioPtr, SDL_Surface*** map) {
         if (isGameStart) {
             SDL_FillRect(background, NULL,
                          SDL_MapRGB(background->format, 0, 0, 0));
-            startLevel(background, map, ROW_SIZE, COL_SIZE);
+            startLevel(background, map, SIZE);
             SDL_BlitSurface(curMarioDir, NULL, background, &curPos);
             SDL_Flip(background);
         }
     }
 
     freeMario(marioPtr);
-}
-
-// Private functions
-void startLevel(SDL_Surface* background, SDL_Surface*** map, int maxRow,
-                int maxCol) {
-    SDL_Rect curPos = {0, 0};
-    for (int i = 0; i < maxRow; i++) {
-        curPos.x = 0;
-        for (int j = 0; j < maxCol; j++) {
-            SDL_BlitSurface(map[i][j], NULL, background, &curPos);
-            curPos.x += WINDOW_SCALE;
-        }
-        curPos.y += WINDOW_SCALE;
-    }
-}
-
-void initGame(SDL_Surface* background, SDL_Rect* curPos, Mario* marioPtr,
-              SDL_Surface** curMarioDir) {
-    curPos->x = 0;
-    curPos->y = 0;
-    *curMarioDir = marioPtr->marioDown;
-}
-
-void move(Direction direction, SDL_Surface** curMarioDir, Mario* marioPtr,
-          SDL_Rect* curPos) {
-    if (direction == UP) {
-        if (curPos->y > 0) {
-            curPos->y -= WINDOW_SCALE;
-        }
-        *curMarioDir = marioPtr->marioUp;
-
-    } else if (direction == DOWN) {
-        if (curPos->y < (HEIGHT - WINDOW_SCALE)) {
-            curPos->y += WINDOW_SCALE;
-        }
-        *curMarioDir = marioPtr->marioDown;
-
-    } else if (direction == LEFT) {
-        if (curPos->x > 0) {
-            curPos->x -= WINDOW_SCALE;
-        }
-        *curMarioDir = marioPtr->marioLeft;
-
-    } else if (direction == RIGHT) {
-        if ((curPos->x) < (WIDTH - WINDOW_SCALE)) {
-            curPos->x += WINDOW_SCALE;
-        }
-        *curMarioDir = marioPtr->marioRight;
-    }
 }

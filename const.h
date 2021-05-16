@@ -1,8 +1,7 @@
 #ifndef CONST_H
 #define CONST_H
 
-#define WIDTH 408
-#define HEIGHT 408
+#define WINDOW_SIZE 408
 
 #define IMG_FOLDER "img"
 
@@ -19,10 +18,8 @@
 #define TARGET IMG_FOLDER "/objectif.png"
 #define EMPTY IMG_FOLDER "/empty.jpg"
 
-
 #define WINDOW_SCALE 34
-#define ROW_SIZE (WIDTH / WINDOW_SCALE)
-#define COL_SIZE (WIDTH / WINDOW_SCALE)
+#define SIZE (WINDOW_SIZE / WINDOW_SCALE)
 #define CHUNK_SIZE 100
 
 #endif
