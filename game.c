@@ -1,5 +1,5 @@
 
-#include "control.h"
+#include "game.h"
 
 #include <SDL/SDL.h>
 
@@ -40,7 +40,7 @@ void play(Material* material, SDL_Surface* background, Mario* mario,
 
             case SDL_KEYDOWN:
                 switch (event.key.keysym.sym) {
-                    case SDLK_a:
+                    case SDLK_SPACE:
                         initGame(mario);
                         isGameStart = true;
                         break;

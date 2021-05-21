@@ -3,7 +3,7 @@
 
 #include <SDL/SDL.h>
 
-#include "control.h"
+#include "game.h"
 typedef struct Coord {
     int x;
     int y;

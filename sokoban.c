@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 #include "const.h"
-#include "control.h"
+#include "game.h"
 #include "material.h"
 #include "mario.h"
 #include "view.h"
