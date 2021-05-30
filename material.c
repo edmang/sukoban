@@ -37,6 +37,7 @@ SDL_Surface* convertCharToMaterial(char c, Material material) {
             return material.target;
         case 'O':
             return material.boxOk;
+        case 'M':
         case 'E':
             return material.empty;
         default:
@@ -44,12 +45,12 @@ SDL_Surface* convertCharToMaterial(char c, Material material) {
     }
 }
 
-SDL_Surface*** convertLevelToMap(Material material, char** level, int size) {
+SDL_Surface*** convertLevelToMap(Material material, char* level, int size) {
     SDL_Surface*** map = initMap(size);
 
     for (int i = 0; i < size; i++) {
         for (int j = 0; j < size; j++) {
-            map[i][j] = convertCharToMaterial(level[i][j], material);
+            map[i][j] = convertCharToMaterial(level[i * size + j], material);
         }
     }
 
@@ -73,16 +74,16 @@ Material initMaterial(char* wall, char* box, char* boxOk, char* target) {
     return material;
 }
 
-char** loadLevel(char* filePath) {
+char* loadLevel(char* filePath) {
     FILE* levelFile = fopen(filePath, "r+");
 
     if (levelFile != NULL) {
-        char** elements = initLevel(SIZE);
+        char* elements = malloc(sizeof(char[SIZE][SIZE]));
         char* buffer = malloc(sizeof(char) * CHUNK_SIZE);
         int i = 0;
         while (fgets(buffer, CHUNK_SIZE, levelFile)) {
             for (int j = 0; j < SIZE; j++) {
-                elements[i][j] = buffer[j];
+                elements[i * SIZE + j] = buffer[j];
             }
             i++;
         }

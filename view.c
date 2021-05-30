@@ -12,5 +12,4 @@ void addWelcomePage(SDL_Surface* background, SDL_Surface* welcomePage) {
 void configure(SDL_Surface* background) {
     SDL_WM_SetCaption("Sokoban", NULL);
     SDL_EnableKeyRepeat(10, 100);
-    SDL_FillRect(background, NULL, SDL_MapRGB(background->format, 0, 0, 0));
 }

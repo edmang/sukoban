@@ -2,10 +2,13 @@
 #define CONST_H
 
 #define WINDOW_SIZE 408
+#define FONT_SIZE 32
 
 #define IMG_FOLDER "img"
 
 #define WELCOME_PAGE IMG_FOLDER "/menu.jpg"
+#define LEVEL_PAGE IMG_FOLDER "/level.jpg"
+#define END_PAGE IMG_FOLDER "/end.jpg"
 
 #define MARIO_UP IMG_FOLDER "/up.gif"
 #define MARIO_DOWN IMG_FOLDER "/down.gif"
@@ -20,5 +23,7 @@
 #define WINDOW_SCALE 34
 #define SIZE (WINDOW_SIZE / WINDOW_SCALE)
 #define CHUNK_SIZE 100
+
+#define MAX_LEVEL 1
 
 #endif
