@@ -1,8 +1,6 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 #include <SDL/SDL_ttf.h>
-#include <stdio.h>
-#include <stdlib.h>
 
 #include "const.h"
 #include "game.h"
@@ -10,7 +8,7 @@
 #include "material.h"
 #include "view.h"
 
-int main(int argn, char** argv) {
+int main(int argc, char *argv[]) {
     // Start
     SDL_Init(SDL_INIT_VIDEO);
     TTF_Init();

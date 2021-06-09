@@ -2,6 +2,7 @@
 #define MARIO_C
 #endif
 
+#include <stdlib.h>
 #include "mario.h"
 
 Mario initMario(char* up, char* down, char* left, char* right) {

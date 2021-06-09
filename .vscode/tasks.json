@@ -1,0 +1,37 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "cppbuild",
+			"label": "C/C++: gcc.exe build active file",
+			"command": "C:/MinGW/bin/gcc.exe",
+			"args": [
+				"-g",
+				"${fileDirname}/sokoban.c",
+				"${fileDirname}/view.c",
+				"${fileDirname}/mario.c",
+				"${fileDirname}/game.c",
+				"${fileDirname}/move.c",
+				"${fileDirname}/material.c",
+				"${fileDirname}/coord.c",
+				"-o",
+				"${fileDirname}/${fileBasenameNoExtension}.exe",
+				"-LC:/MinGW/lib",
+				"-LC:/MinGW/lib/SDL",
+				"-lmingw32",
+				"-lSDLmain",
+				"-lSDL",
+				"-lSDL_image",
+				"-lSDL_ttf"
+			],
+			"options": {
+				"cwd": "C:/MinGW/bin"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": "build",
+			"detail": "compiler: C:/MinGW/bin/gcc.exe"
+		}
+	]
+}

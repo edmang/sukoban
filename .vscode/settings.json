@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "const.h": "c",
+        "mario.h": "c",
+        "material.h": "c",
+        "game.h": "c",
+        "view.h": "c",
+        "sdl.h": "c",
+        "move.h": "c",
+        "sdl_ttf.h": "c",
+        "cstdlib": "c"
+    }
+}
